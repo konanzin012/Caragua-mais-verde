@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caraguá + Verde — Diagnóstico Ambiental da Área 9</title>
+<style>
+  :root{
+    --bg:#faf7ef; --ink:#1d2b22; --ink-soft:#51604f;
+    --pri:#2f6b4f; --pri-dk:#1f4d38; --sand:#b8752a; --water:#1f6e8c;
+    --card:#ffffff; --line:#e3dac2; --chip:#eef3ea;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    height:100%;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1712; --ink:#edf1ea; --ink-soft:#adbcae;
+      --pri:#78c79c; --pri-dk:#9adcb7; --sand:#e2ab6c; --water:#7fc4d8;
+      --card:#182019; --line:#283529; --chip:#1d2a20;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1712; --ink:#edf1ea; --ink-soft:#adbcae;
+    --pri:#78c79c; --pri-dk:#9adcb7; --sand:#e2ab6c; --water:#7fc4d8;
+    --card:#182019; --line:#283529; --chip:#1d2a20;
+  }
+  *{box-sizing:border-box;}
+  html{height:100%; scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{height:100%; margin:0; background:var(--bg); color:var(--ink); overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  #deck{height:100%; display:flex; flex-direction:column;}
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:14px 22px 6px;
+    font-size:.72rem; letter-spacing:.06em; color:var(--ink-soft); text-transform:uppercase;}
+  .progress{height:3px; background:var(--line); margin:0 22px 4px; border-radius:3px; overflow:hidden;}
+  .progress i{display:block; height:100%; width:8.3%; background:var(--pri); transition:width .25s;}
+  .stage{flex:1; position:relative; overflow:hidden;}
+  .slide{position:absolute; inset:0; display:none; flex-direction:column; justify-content:center;
+    padding:10px clamp(20px,5vw,64px); overflow-y:auto;}
+  .slide.active{display:flex;}
+  .eyebrow{color:var(--sand); font-weight:700; letter-spacing:.08em; font-size:clamp(.68rem,1.6vw,.82rem);
+    text-transform:uppercase; margin-bottom:6px;}
+  h2{font-size:clamp(1.25rem,3.4vw,2rem); margin:0 0 12px; color:var(--pri-dk); line-height:1.18;}
+  .lead{font-size:clamp(.9rem,2vw,1.05rem); color:var(--ink-soft); margin:-4px 0 12px;}
+  ul.b{margin:0; padding:0; list-style:none;}
+  ul.b li{position:relative; padding-left:26px; margin:7px 0; font-size:clamp(.82rem,1.8vw,.98rem); line-height:1.42;}
+  ul.b li::before{content:"🌿"; position:absolute; left:0; top:0; font-size:.85em;}
+  .grid{display:grid; gap:10px; margin:8px 0;}
+  .cols2{grid-template-columns:1fr 1fr;} .cols3{grid-template-columns:repeat(3,1fr);}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 13px; font-size:.82rem; line-height:1.4;}
+  .card h4{margin:0 0 5px; color:var(--water); font-size:.9rem;}
+  .stat{background:var(--chip); border-radius:12px; padding:9px 10px; text-align:center;}
+  .stat b{display:block; font-size:clamp(1.05rem,2.4vw,1.35rem); color:var(--pri-dk);}
+  .stat span{font-size:.68rem; color:var(--ink-soft);}
+  .callout{border-left:3px solid var(--sand); background:var(--chip); padding:8px 12px; border-radius:0 10px 10px 0;
+    font-size:.8rem; color:var(--ink-soft); margin-top:10px;}
+  .foot{margin-top:10px; font-size:.65rem; color:var(--ink-soft); opacity:.85;}
+  .navbar{display:flex; align-items:center; justify-content:space-between; padding:8px 20px calc(12px + env(safe-area-inset-bottom,0px));}
+  button.nav{border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px;
+    padding:9px 16px; font-size:.82rem; cursor:pointer;}
+  button.nav:disabled{opacity:.3;}
+  .memberlist{list-style:none; margin:6px 0; padding:0; display:grid; gap:6px;}
+  .memberlist li{display:flex; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--line);
+    border-radius:10px; padding:7px 14px; font-size:.82rem;}
+  .memberlist b{color:var(--pri-dk); white-space:nowrap;}
+  @media(max-width:640px){.cols2,.cols3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="deck">
+  <div class="topbar"><span>Ecologia de Populações e Comunidades</span><span id="ctr">1 / 12</span></div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="stage" id="stage">
+
+    <div class="slide active">
+      <div class="eyebrow">Ecologia de Populações e Comunidades</div>
+      <h2 style="font-size:clamp(1.6rem,5vw,2.5rem)">Caraguá + Verde 🌿</h2>
+      <p class="lead">Diagnóstico ambiental da Área 9 e proposta de infraestrutura verde para Caraguatatuba/SP</p>
+      <div class="callout">Centro Universitário Módulo · Profa. Dra. Karolina Van Sebroeck Dória · Caraguatatuba</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Introdução</div>
+      <h2>Uma paisagem em tensão 🌱🏙️</h2>
+      <ul class="b">
+        <li>A <b>Área 9</b> fica entre a Rua Milton Ricardo Santana e a Av. Gaspar de Souza — um <b>ecótono urbano-costeiro</b>.</li>
+        <li>Diagnosticar solo, relevo, clima, água e vegetação da região.</li>
+        <li>Entender como a urbanização pressiona as comunidades vegetais nativas.</li>
+        <li>Propor soluções de floresta urbana com base em casos reais de sucesso.</li>
+      </ul>
+      <div class="callout"><b>Ecótono:</b> zona de transição entre dois ecossistemas — concentra mais biodiversidade, e também mais fragilidade.</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Onde fica a Área 9</div>
+      <h2>Um recorte do litoral norte paulista</h2>
+      <div class="grid cols3">
+        <div class="stat"><b>484.947 km²</b><span>área do município</span></div>
+        <div class="stat"><b>134.873 → 142.248</b><span>habitantes (2022 → est. 2025)</span></div>
+        <div class="stat"><b>278,12 hab/km²</b><span>densidade demográfica</span></div>
+      </div>
+      <ul class="b">
+        <li>Solo arenoso, salinidade e "borrifo salino" marinho moldam a vegetação local.</li>
+        <li>O crescimento populacional pressiona diretamente a zona costeira.</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Etapas 5 e 6 · Da Serra ao Mar</div>
+      <h2>Um relevo, dois mundos</h2>
+      <div class="grid cols2">
+        <div class="card"><h4>⛰️ Encosta (Serra do Mar)</h4>Cambissolos e Argissolos · textura franco-argilosa · declividade &gt;45% · até ~1.200 m de altitude · alto risco de deslizamento</div>
+        <div class="card"><h4>🏖️ Planície litorânea</h4>Gleissolos e Neossolos · textura arenosa · declividade 0–3% · drenagem imperfeita · risco de inundação e salinização</div>
+      </div>
+      <div class="callout">É a textura arenosa da planície que permite a fixação das espécies pioneiras de restinga.</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Etapas 7 e 8 · O motor hidroclimático</div>
+      <h2>Calor, chuva e um rio que conecta tudo</h2>
+      <div class="grid cols3">
+        <div class="stat"><b>24 °C</b><span>temperatura média</span></div>
+        <div class="stat"><b>2.000–2.500 mm</b><span>chuva por ano</span></div>
+        <div class="stat"><b>80–85%</b><span>umidade relativa</span></div>
+      </div>
+      <ul class="b">
+        <li>Efeito orográfico: a Serra do Mar barra a umidade vinda do Atlântico.</li>
+        <li>Bacia do Litoral Norte, com destaque para o Rio Juqueriquerê.</li>
+        <li>Água de ótima qualidade nas nascentes preservadas; piora ao cruzar áreas urbanas.</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Mata Atlântica em gradiente</div>
+      <h2>Da praia ao topo da serra 🌳</h2>
+      <div class="grid cols2">
+        <div class="card"><h4>Formações Florestais</h4>Floresta Ombrófila Densa — Terras Baixas, Submontana e Montana</div>
+        <div class="card"><h4>Formações Pioneiras</h4>Restinga, Manguezal e Vegetação Aluvial / Brejos Edáficos</div>
+      </div>
+      <ul class="b">
+        <li><b>Na Área 9 (MapBiomas):</b> Restinga Arbórea, Restinga Herbácea (Jundu), Formação Florestal, Praia/Duna, Área Urbanizada e Corpo d'Água.</li>
+        <li><b>Espécies nativas:</b> salsa-da-praia, feijão-da-praia, cacto-de-restinga, bromélias.</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Quando a cidade encosta no ecossistema</div>
+      <h2>Cinco pressões sobre a Área 9</h2>
+      <ul class="b">
+        <li><b>Impermeabilização</b> do solo — menos infiltração de água.</li>
+        <li><b>Ilhas de calor</b> e maior evapotranspiração.</li>
+        <li><b>Compactação do solo</b> por pisoteio e resíduos.</li>
+        <li><b>Fragmentação de hábitat</b> — menos fluxo gênico entre populações.</li>
+        <li><b>Espécies exóticas</b> competindo com a flora nativa.</li>
+      </ul>
+      <div class="callout"><b>Efeito de borda:</b> alterações físicas e biológicas que avançam sobre a vegetação a partir do limite urbano.</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Estudo de caso local</div>
+      <h2>O marmeleiro-da-praia toma conta do Jundu</h2>
+      <ul class="b">
+        <li>Desde 2020, <i>Dalbergia ecastophyllum</i> domina a Praia das Palmeiras.</li>
+        <li>Seu sombreamento suprime a camada herbácea nativa (salsa e feijão-da-praia).</li>
+        <li>Resposta: manejo seletivo + remoção de exóticas + reintrodução de nativas.</li>
+        <li>Programa Municipal do Jundu cobre ~3 km de orla, entre os rios Santo Antônio e Lagoa.</li>
+      </ul>
+      <div class="callout">MapBiomas 1985→2025: de restinga contínua a um mosaico entre malha urbana e núcleos de restauração.</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Fundamentação teórica</div>
+      <h2>Floresta urbana é infraestrutura, não paisagismo</h2>
+      <p class="lead">Vegetação arbórea dentro do perímetro urbano: ruas, praças, parques e APPs.</p>
+      <div class="grid cols3">
+        <div class="card"><h4>🌎 Ambiental</h4>Reduz até 5 °C · +60% de absorção de chuva vs. asfalto · filtra o ar</div>
+        <div class="card"><h4>🧘 Social</h4>Lazer, sombra, saúde mental</div>
+        <div class="card"><h4>💰 Econômico</h4>Valoriza imóveis · reduz gastos com saúde e energia</div>
+      </div>
+      <div class="callout">1 árvore grande filtra a poluição equivalente a ~100 carros por ano (FAO, 2017).</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Inspirações reais</div>
+      <h2>Três exemplos, uma mesma lição</h2>
+      <div class="grid cols3">
+        <div class="card"><h4>🌳 Tiquatira (SP)</h4>De lixão a parque com 40 mil árvores nativas e corredor verde</div>
+        <div class="card"><h4>🦜 Guapi-Mirim (RJ)</h4>Manguezal recuperado: +70 espécies e +33% de área</div>
+        <div class="card"><h4>🏢 Bosco Verticale (Milão)</h4>900 árvores em 2 torres residenciais; −3 °C no entorno</div>
+      </div>
+      <div class="callout">Em todos os casos, a vegetação atua como infraestrutura ativa — não decoração.</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Síntese e proposta</div>
+      <h2>Caraguá + Verde: da restinga ao bairro</h2>
+      <ul class="b">
+        <li>Expandir o Programa do Jundu a outros trechos fragmentados de restinga.</li>
+        <li>Criar corredores verdes urbanos ligando praças e fundos de vale <i>(modelo Tiquatira)</i>.</li>
+        <li>Proteger e ampliar os manguezais do Rio Lagoa <i>(modelo Guapi-Mirim)</i>.</li>
+        <li>Incentivar arborização e fachadas/telhados verdes em novas construções <i>(modelo Bosco Verticale)</i>.</li>
+      </ul>
+      <div class="callout">Urbanização não precisa significar perda de biodiversidade — pode significar redesenho.</div>
+    </div>
+
+    <div class="slide">
+      <div class="eyebrow">Créditos</div>
+      <h2>Equipe e referências</h2>
+      <ul class="memberlist">
+        <li><span>Daniel André Santos Ferreira</span><b>RGM 43645186</b></li>
+        <li><span>Lohan Prado Da Silva</span><b>RGM 4270066</b></li>
+        <li><span>Ivania Sineide Candido Navarro</span><b>RGM 33421552</b></li>
+        <li><span>Marcelo Jose Ferreira</span><b>RGM 36196363</b></li>
+        <li><span>Angelo Marciu Ochoas</span><b>RGM 34703446</b></li>
+        <li><span>Moises Miguel</span><b>RGM 33825491</b></li>
+        <li><span>Marina Oliveira Villa</span><b>RGM 43043071</b></li>
+      </ul>
+      <div class="foot">Fontes: IBGE · DataGEO/SIMA-SP · MapBiomas Coleção 11 · INMET · SNIRH/ANA · EMBRAPA · Prefeitura de Caraguatatuba · FAO (2017)</div>
+      <div class="callout">Obrigado! 🌿 Perguntas?</div>
+    </div>
+
+  </div>
+  <div class="navbar">
+    <button class="nav" id="prev">← Anterior</button>
+    <button class="nav" id="next">Próximo →</button>
+  </div>
+</div>
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const ctr=document.getElementById('ctr'), bar=document.getElementById('bar');
+  const prevBtn=document.getElementById('prev'), nextBtn=document.getElementById('next'), stage=document.getElementById('stage');
+  function show(n){
+    slides[i].classList.remove('active');
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides[i].classList.add('active');
+    ctr.textContent=(i+1)+' / '+slides.length;
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    prevBtn.disabled=i===0; nextBtn.disabled=i===slides.length-1;
+  }
+  prevBtn.onclick=()=>show(i-1);
+  nextBtn.onclick=()=>show(i+1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight') show(i+1);
+    if(e.key==='ArrowLeft') show(i-1);
+  });
+  let tx=null;
+  stage.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+  stage.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(dx>40) show(i-1); else if(dx<-40) show(i+1);
+    tx=null;
+  });
+  show(0);
+</script>
+</body>
+</html>
